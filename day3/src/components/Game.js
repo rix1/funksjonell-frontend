@@ -3,26 +3,28 @@ import { connect } from 'react-redux';
 
 import Score from './Score';
 import BestScore from './BestScore';
+import ResetGame from './ResetGame';
 import Board from './Board';
 import {
-    resetGame
+    resetGame,
+    flipCard
 } from '../actions';
 
 const Game = ( props ) => {
 
- const handleCardClick = () => {
-     //Implement onCardClick callback here
+ const handleCardClick = (some) => {
+     props.dispatch(flipCard(some));
  };
- 
+
   return (
     <div className='game'>
       <h1>Memory game</h1>
       <Score score={ props.flips } />
       <BestScore bestScore={ props.bestScore } />
-      <Board cards={ props.cards } />
+      <ResetGame onButtonClick={() => props.dispatch(resetGame())}/>
+      <Board cards={ props.cards } onCardClick={ (arg) => handleCardClick(arg)}/>
     </div>
   )
 }
 
-export default Game;
-
+export default connect()(Game); // connecting game to store...

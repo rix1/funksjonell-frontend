@@ -7,10 +7,11 @@ import {cards, game} from '../data.js';
 import Game from '../components/Game';
 
 const App = props => (
+
     <Game
-        cards={ cards }
-        flips={ game.flips }
-        bestScore={ game.bestScore }
+        cards={ props.cards }
+        flips={ props.game.flips }
+        bestScore={ props.game.bestScore }
     />
 );
 
@@ -23,5 +24,6 @@ App.propTypes = {
 };
 
 export default connect(state => ({
-    cards: state.cards
+    cards: state.cards,
+    game: state.game
 }))(App);

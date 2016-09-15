@@ -17,4 +17,3 @@ export const game = {
     flips: 10,
     bestScore: Number.MAX_VALUE
 }
-
